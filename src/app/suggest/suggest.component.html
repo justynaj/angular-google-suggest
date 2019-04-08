@@ -1,0 +1,27 @@
+<section class="section">
+  <div class="container">
+    <h1 class="title">Angular Google Suggest</h1>
+
+    <nav class="panel">
+      <div class="panel-block is-block">
+        <label class="label">Wpisz dowolne słowo</label>
+        <div class="control has-icons-left">
+          <input
+            class="input"
+            type="text"
+            placeholder="np. Litwo, ojczyzno, moja"
+            [formControl]="keyword"
+            (keydown.enter)="goToGoogle(keyword.value)"
+          />
+          <span class="icon is-medium is-left">
+            <i class="fas fa-search"></i>
+          </span>
+        </div>
+      </div>
+
+      <a class="panel-block" *ngFor="let suggestion of suggestions" (click)="goToGoogle(suggestion)">
+        <span [innerHTML]="suggestion | highlight: keyword.value"></span>
+      </a>
+    </nav>
+  </div>
+</section>
